@@ -1,0 +1,523 @@
+i<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lessgooo App</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        background: linear-gradient(135deg,#111,#333);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .app {
+        width: 90%;
+        max-width: 450px;
+        background: #1e1e1e;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0,0,0,.5);
+    }
+
+    h1 {
+        text-align: center;
+        color: #00ff88;
+    }
+
+    input {
+        width: 75%;
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+    }
+
+    button {
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: #00ff88;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    ul {
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    li {
+        list-style: none;
+        background: #292929;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .delete {
+        color: red;
+        cursor: pointer;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #aaa;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <h1>🚀 Lessgooo</h1>
+
+    <p>Organise tes objectifs et avance !</p>
+
+    <input id="taskInput" placeholder="Ajouter un objectif...">
+    <button onclick="addTask()">+</button>
+
+    <ul id="tasks"></ul>
+
+    <div class="footer">
+        Lessgooo © 2026
+    </div>
+
+</div>
+
+
+<script>
+
+let tasks = JSON.parse(localStorage.getItem("lessgooo")) || [];
+
+
+function displayTasks(){
+
+    let list = document.getElementById("tasks");
+    list.innerHTML = "";
+
+    tasks.forEach((task,index)=>{
+
+        let li = document.createElement("li");
+
+        li.innerHTML = `
+        ${task}
+        <span class="delete" onclick="removeTask(${index})">
+        ✖
+        </span>
+        `;
+
+        list.appendChild(li);
+
+    });
+
+}
+
+
+function addTask(){
+
+    let input = document.getElementById("taskInput");
+
+    if(input.value.trim() !== ""){
+
+        tasks.push(input.value);
+
+        localStorage.setItem(
+            "lessgooo",
+            JSON.stringify(tasks)
+        );
+
+        input.value="";
+
+        displayTasks();
+
+    }
+
+}
+
+
+function removeTask(index){
+
+    tasks.splice(index,1);
+
+    localStorage.setItem(
+        "lessgooo",
+        JSON.stringify(tasks)
+    );
+
+    displayTasks();
+
+}
+
+
+displayTasks();
+
+</script>
+
+
+</body>
+</htmli<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Lessgooo App</title>
+
+<style>
+    * {
+	            box-sizing: border-box;
+		            font-family: Arial, sans-serif;
+			        }
+
+        body {
+		        margin: 0;
+			        background: linear-gradient(135deg,#111,#333);
+				        color: white;
+					        min-height: 100vh;
+						        display: flex;
+							        justify-content: center;
+								        align-items: center;
+									    }
+
+	    .app {
+		            width: 90%;
+			            max-width: 450px;
+				            background: #1e1e1e;
+					            padding: 25px;
+						            border-radius: 20px;
+							            box-shadow: 0 0 30px rgba(0,0,0,.5);
+								        }
+
+	        h1 {
+			        text-align: center;
+				        color: #00ff88;
+					    }
+
+		    input {
+			            width: 75%;
+				            padding: 12px;
+					            border-radius: 10px;
+						            border: none;
+							            outline: none;
+								        }
+
+		        button {
+				        padding: 12px;
+					        border: none;
+						        border-radius: 10px;
+							        background: #00ff88;
+								        cursor: pointer;
+									        font-weight: bold;
+										    }
+
+			    ul {
+				            padding: 0;
+					            margin-top: 20px;
+						        }
+
+			        li {
+					        list-style: none;
+						        background: #292929;
+							        padding: 12px;
+								        margin: 10px 0;
+									        border-radius: 10px;
+										        display: flex;
+											        justify-content: space-between;
+												    }
+
+				    .delete {
+					            color: red;
+						            cursor: pointer;
+							        }
+
+				        .footer {
+						        text-align: center;
+							        margin-top: 20px;
+								        color: #aaa;
+									    }
+</style>
+
+	</head>
+
+	<body>
+
+		<div class="app">
+
+			    <h1>🚀 Lessgooo</h1>
+
+			        <p>Organise tes objectifs et avance !</p>
+
+				    <input id="taskInput" placeholder="Ajouter un objectif...">
+				        <button onclick="addTask()">+</button>
+
+					    <ul id="tasks"></ul>
+
+					        <div class="footer">
+							        Lessgooo © 2026
+								    </div>
+
+		</div>
+
+
+		<script>
+
+			let tasks = JSON.parse(localStorage.getItem("lessgooo")) || [];
+
+
+			function displayTasks(){
+
+				    let list = document.getElementById("tasks");
+				    list.innerHTML = "";
+
+				    tasks.forEach((task,index)=>{
+
+					            let li = document.createElement("li");
+
+					            li.innerHTML = `
+						            ${task}
+							            <span class="delete" onclick="removeTask(${index})">
+								            ✖
+									            </span>
+										            `;
+
+					            list.appendChild(li);
+
+					        });
+
+			}
+
+
+			function addTask(){
+
+				    let input = document.getElementById("taskInput");
+
+				    if(input.value.trim() !== ""){
+
+					            tasks.push(input.value);
+
+					            localStorage.setItem(
+							                "lessgooo",
+							                JSON.stringify(tasks)
+							            );
+
+					            input.value="";
+
+					            displayTasks();
+
+					        }
+
+			}
+
+
+			function removeTask(index){
+
+				    tasks.splice(index,1);
+
+				    localStorage.setItem(
+					            "lessgooo",
+					            JSON.stringify(tasks)
+					        );
+
+				    displayTasks();
+
+			}
+
+
+				displayTasks();
+
+		</script>
+
+
+	</body>
+	</htmli<!DOCTYPE html>
+	<html lang="fr">
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+			<title>Lessgooo App</title>
+
+<style>
+    * {
+	            box-sizing: border-box;
+		            font-family: Arial, sans-serif;
+			        }
+
+        body {
+		        margin: 0;
+			        background: linear-gradient(135deg,#111,#333);
+				        color: white;
+					        min-height: 100vh;
+						        display: flex;
+							        justify-content: center;
+								        align-items: center;
+									    }
+
+	    .app {
+		            width: 90%;
+			            max-width: 450px;
+				            background: #1e1e1e;
+					            padding: 25px;
+						            border-radius: 20px;
+							            box-shadow: 0 0 30px rgba(0,0,0,.5);
+								        }
+
+	        h1 {
+			        text-align: center;
+				        color: #00ff88;
+					    }
+
+		    input {
+			            width: 75%;
+				            padding: 12px;
+					            border-radius: 10px;
+						            border: none;
+							            outline: none;
+								        }
+
+		        button {
+				        padding: 12px;
+					        border: none;
+						        border-radius: 10px;
+							        background: #00ff88;
+								        cursor: pointer;
+									        font-weight: bold;
+										    }
+
+			    ul {
+				            padding: 0;
+					            margin-top: 20px;
+						        }
+
+			        li {
+					        list-style: none;
+						        background: #292929;
+							        padding: 12px;
+								        margin: 10px 0;
+									        border-radius: 10px;
+										        display: flex;
+											        justify-content: space-between;
+												    }
+
+				    .delete {
+					            color: red;
+						            cursor: pointer;
+							        }
+
+				        .footer {
+						        text-align: center;
+							        margin-top: 20px;
+								        color: #aaa;
+									    }
+</style>
+
+		</head>
+
+		<body>
+
+			<div class="app">
+
+				    <h1>🚀 Lessgooo</h1>
+
+				        <p>Organise tes objectifs et avance !</p>
+
+					    <input id="taskInput" placeholder="Ajouter un objectif...">
+					        <button onclick="addTask()">+</button>
+
+						    <ul id="tasks"></ul>
+
+						        <div class="footer">
+								        Lessgooo © 2026
+									    </div>
+
+			</div>
+
+
+			<script>
+
+				let tasks = JSON.parse(localStorage.getItem("lessgooo")) || [];
+
+
+				function displayTasks(){
+
+					    let list = document.getElementById("tasks");
+					    list.innerHTML = "";
+
+					    tasks.forEach((task,index)=>{
+
+						            let li = document.createElement("li");
+
+						            li.innerHTML = `
+							            ${task}
+								            <span class="delete" onclick="removeTask(${index})">
+									            ✖
+										            </span>
+											            `;
+
+						            list.appendChild(li);
+
+						        });
+
+				}
+
+
+				function addTask(){
+
+					    let input = document.getElementById("taskInput");
+
+					    if(input.value.trim() !== ""){
+
+						            tasks.push(input.value);
+
+						            localStorage.setItem(
+								                "lessgooo",
+								                JSON.stringify(tasks)
+								            );
+
+						            input.value="";
+
+						            displayTasks();
+
+						        }
+
+				}
+
+
+				function removeTask(index){
+
+					    tasks.splice(index,1);
+
+					    localStorage.setItem(
+						            "lessgooo",
+						            JSON.stringify(tasks)
+						        );
+
+					    displayTasks();
+
+				}
+
+
+					displayTasks();
+
+			</script>
+
+
+		</body>
+	</html>>>
